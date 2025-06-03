@@ -1,5 +1,7 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 import MovingBorder from "./MovingBorder";
+import "./moving.css";
 
 const TradingAccountsComparison = () => {
   const accounts = [
@@ -19,7 +21,6 @@ const TradingAccountsComparison = () => {
       swapPolicy: "0%",
       riskExposure: "Moderate",
       assetOptions: "Forex, Crypto, Stocks, Commodities, Indices",
-      buttonColor: "bg-purple-600 hover:bg-purple-700",
     },
     {
       name: "Abcd Cent",
@@ -37,8 +38,6 @@ const TradingAccountsComparison = () => {
       swapPolicy: "0%",
       riskExposure: "Low",
       assetOptions: "Forex, Crypto, Stocks, Commodities, Indices",
-      buttonColor: "bg-purple-600 hover:bg-purple-700",
-      highlighted: true,
     },
     {
       name: "Abcd Pro",
@@ -56,25 +55,51 @@ const TradingAccountsComparison = () => {
       swapPolicy: "0%",
       riskExposure: "High",
       assetOptions: "Forex, Crypto, Stocks, Commodities, Indices",
-      buttonColor: "bg-purple-600 hover:bg-purple-700",
     },
+  ];
+  const [selectedItem, setSelectedItem] = useState(null);
+
+  const menuItems = [
+    "Who It's For",
+    "Initial Capital Requirement",
+    "Spread Advantage",
+    "Trading Fees",
+    "Leverage Capacity",
+    "Minimum Lot Size",
+    "Trade Execution Limit",
+    "Open Position Capacity",
+    "Stop Out Threshold",
+    "Margin Call Activation",
+    "Swap Policy",
+    "Risk Exposure",
+    "Asset Options",
   ];
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white p-8">
-      <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {accounts.map((account, index) =>
-            index == 1 ? (
-              <>
-                <MovingBorder key={index}>
-                  <Details account={account} />
-                </MovingBorder>
-              </>
-            ) : (
-              <Details account={account} key={index} />
-            )
-          )}
+    <div className=" min-h-[900px]  bg-gray-900 text-white p-8">
+      <div className="max-w-7xl mx-auto flex items-center justify-center">
+        <div className="bg-gray-900 text-white h-full w-[250px] p-6 ">
+          <nav className="space-y-1">
+            {menuItems.map((item, index) => (
+              <div
+                key={index}
+                className={`
+              pt-2  px-4 rounded-lg cursor-pointer transition-all duration-200 ease-in-out
+              border-b border-gray-800 last:border-b-0
+              hover:bg-gray-800 hover:border-gray-700
+            `}
+              >
+                <div className="text-gray-300 font-medium text-[14px] tracking-wide">
+                  {item}
+                </div>
+              </div>
+            ))}
+          </nav>
+        </div>
+        <div className="flex flex-col lg:flex-row ">
+          {accounts.map((account, index) => (
+            <Details account={account} key={index} highLighted={index === 1} />
+          ))}
         </div>
       </div>
     </div>
@@ -83,57 +108,57 @@ const TradingAccountsComparison = () => {
 
 export default TradingAccountsComparison;
 
-const Details = ({ account }: any) => {
+const Details = ({ account, highLighted = false }: any) => {
   const specifications = [
-    { label: "Who It's For", key: "description" },
-    { label: "Initial Capital Requirement", key: "initialCapital" },
-    { label: "Spread Advantage", key: "spreadAdvantage" },
-    { label: "Trading Fees", key: "tradingFees" },
-    { label: "Leverage Capacity", key: "leverageCapacity" },
-    { label: "Minimum Lot Size", key: "minimumLotSize" },
-    { label: "Trade Execution Limit", key: "tradeExecutionLimit" },
-    { label: "Open Position Capacity", key: "openPositionCapacity" },
-    { label: "Stop Out Threshold", key: "stopOutThreshold" },
-    { label: "Margin Call Activation", key: "marginCallActivation" },
-    { label: "Swap Policy", key: "swapPolicy" },
-    { label: "Risk Exposure", key: "riskExposure" },
-    { label: "Asset Options", key: "assetOptions" },
+    { key: "initialCapital" },
+    { key: "spreadAdvantage" },
+    { key: "tradingFees" },
+    { key: "leverageCapacity" },
+    { key: "minimumLotSize" },
+    { key: "tradeExecutionLimit" },
+    { key: "openPositionCapacity" },
+    { key: "stopOutThreshold" },
+    { labelkey: "marginCallActivation" },
+    { key: "swapPolicy" },
+    { key: "riskExposure" },
+    { key: "assetOptions" },
   ];
 
   return (
-    <div className={`bg-gray-800 rounded-xl p-6 relative`}>
-      {/* Account Header */}
-      <div className="text-center mb-8">
-        <h2 className="text-2xl font-bold mb-4">{account.name}</h2>
-        <p className="text-gray-300 text-sm leading-relaxed">
-          {account.description}
-        </p>
+    <div
+      className={` h-full w-[250px] ${
+        highLighted
+          ? "bg-gradient-to-b from-[#0f0c14] to-black movingBorder "
+          : "bg-gradient-to-b from-[#2b2338] to-black"
+      }  text-white  border border-[#3c2f4b] shadow-lg space-y-4 origin-top  rounded-xl  relative  `}
+    >
+      <div className="p-6">
+        <div className="text-center mb-8">
+          <h2 className="text-2xl font-bold mb-4">{account.name}</h2>
+          <p className="text-gray-300 text-sm leading-relaxed w-[10]">
+            {account.description}
+          </p>
+        </div>
+        <div className="space-y-4 mb-8">
+          {specifications.map((spec, specIndex) => (
+            <div
+              key={specIndex}
+              className="flex items-center justify-center flex-wrap"
+            >
+              <span className="text-white text-sm font-medium text-center text-wrap ">
+                {account[spec.key]}
+              </span>
+            </div>
+          ))}
+        </div>
+        <div className="flex justify-center">
+          <button
+            className={` py-1 px-2 rounded-lg  bg-purple-400 text-[14px]`}
+          >
+            Start Trading
+          </button>
+        </div>
       </div>
-
-      {/* Specifications */}
-      <div className="space-y-4 mb-8">
-        {specifications.map((spec, specIndex) => (
-          <div key={specIndex} className="flex justify-between items-start">
-            <span className="text-gray-400 text-sm flex-1 pr-4">
-              {spec.label}
-            </span>
-            <span className="text-white text-sm font-medium text-right flex-1">
-              {spec.key === "description" ? (
-                <span className="text-xs">{account[spec.key]}</span>
-              ) : (
-                account[spec.key]
-              )}
-            </span>
-          </div>
-        ))}
-      </div>
-
-      {/* Start Trading Button */}
-      <button
-        className={`w-full py-3 px-6 rounded-lg font-medium transition-colors ${account.buttonColor}`}
-      >
-        Start Trading
-      </button>
     </div>
   );
 };

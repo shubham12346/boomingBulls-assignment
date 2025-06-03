@@ -3,7 +3,7 @@
   margin: auto;
   text-align: center;
   font-size: 24px;
-  padding: 5px;
+  padding: 1px;
 
   &::before {
     content: "";
@@ -13,7 +13,7 @@
     right: 0;
     bottom: 0;
     border-radius: 8px;
-    border: 1px solid rgb(0, 102, 255);
+    border: 1px solid rgb(242, 237, 240);
     transition: all 0.5s;
     animation: clippath 6s infinite linear;
   }
