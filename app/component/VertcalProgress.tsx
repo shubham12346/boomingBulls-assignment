@@ -1,13 +1,14 @@
 "use client";
 
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useState } from "react";
+import Button from "./Button";
 
 const steps = [
-  { id: 1, title: "Create your account", align: "left" },
-  { id: 2, title: "Deposit your funds", align: "right" },
-  { id: 3, title: "KYC", align: "left" },
-  { id: 4, title: "Verification", align: "right" },
+  { id: 1, title: "Create your account", align: "right" },
+  { id: 2, title: "Deposit your funds", align: "left" },
+  { id: 3, title: "KYC", align: "right" },
+  { id: 4, title: "Verification", align: "left" },
 ];
 
 export default function ScrollProgressSteps() {
@@ -20,8 +21,8 @@ export default function ScrollProgressSteps() {
   const finalScaleY = useTransform(finalScroll.scrollYProgress, [0, 1], [0, 1]);
 
   return (
-    <div className="max-w-md mx-auto px-4 py-20">
-      <div className="relative">
+    <div className=" w-[600px] mx-auto px-4 py-20 items-center text-center">
+      <div className="relative  ">
         {steps.map((step, index) => {
           const stepRef = useRef(null);
 
@@ -54,20 +55,25 @@ export default function ScrollProgressSteps() {
               {/* Step content */}
               <div className="relative flex items-center py-10">
                 <div className="absolute left-1/2 transform -translate-x-1/2 z-20">
-                  <motion.div style={{ color }} className="font-bold text-lg">
+                  <motion.div
+                    style={{ color }}
+                    className="font-bold text-[42px] "
+                  >
                     {step.id.toString().padStart(2, "0")}
                   </motion.div>
                 </div>
 
                 <div
-                  className={`absolute top-1/2 transform -translate-y-1/2 ${
+                  className={` absolute ${
                     step.align === "left"
-                      ? "left-8 text-left"
-                      : "right-8 text-right"
+                      ? "left-[30px] text-right"
+                      : "left-[340px] text-left"
                   }`}
                 >
-                  <p className="text-sm text-gray-400">Step {step.id}</p>
-                  <p className="text-white font-semibold">{step.title}</p>
+                  <p className="text-sm text-gray-400 ">Step {step.id}</p>
+                  <p className="text-white font-semibold text-[22px]">
+                    {step.title}
+                  </p>
                 </div>
               </div>
             </div>
@@ -79,13 +85,13 @@ export default function ScrollProgressSteps() {
           <div className="w-[2px] bg-gray-700 h-full relative z-0">
             <motion.div
               className="absolute top-0 left-0 w-full bg-gradient-to-b from-purple-200 to-purple-400 origin-top"
-              style={{ height: "100%", scaleY: finalScaleY }}
+              style={{ height: "130%", scaleY: finalScaleY }}
             />
           </div>
         </div>
-
-        {/* Spacer to allow final animation to complete */}
-        <div style={{ height: "100vh" }} />
+      </div>
+      <div className="mt-16">
+        <Button />
       </div>
     </div>
   );
