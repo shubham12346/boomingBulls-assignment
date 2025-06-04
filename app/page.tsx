@@ -1,5 +1,5 @@
-import HeroSection from "./component/HeroSection";
-import PayoutSection from "./component/Payouts";
+import HeroSection from "./component/DetailCards";
+import PayoutSection from "./component/LiveCounter";
 import SubHeader from "./component/SubHeader";
 import TradeAILanding from "./component/TrustSection";
 import VertcalProgress from "./component/VertcalProgress";

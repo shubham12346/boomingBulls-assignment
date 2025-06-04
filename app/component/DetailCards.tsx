@@ -1,9 +1,25 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import "./moving.css";
 
+type accountType = {
+  name: string;
+  description: string;
+  initialCapital: string;
+  spreadAdvantage: string;
+  tradingFees: string;
+  leverageCapacity: string;
+  minimumLotSize: string;
+  tradeExecutionLimit: string;
+  openPositionCapacity: string;
+  marginCallActivation: string;
+  swapPolicy: string;
+  stopOutThreshold: string;
+  riskExposure: string;
+  assetOptions: string;
+};
 const TradingAccountsComparison = () => {
-  const accounts = [
+  const accounts: accountType[] = [
     {
       name: "Abcd Vintage",
       description:
@@ -56,7 +72,6 @@ const TradingAccountsComparison = () => {
       assetOptions: "Forex, Crypto, Stocks, Commodities, Indices",
     },
   ];
-  const [selectedItem, setSelectedItem] = useState(null);
 
   const menuItems = [
     "Who It's For",
@@ -107,7 +122,13 @@ const TradingAccountsComparison = () => {
 
 export default TradingAccountsComparison;
 
-const Details = ({ account, highLighted = false }: any) => {
+const Details = ({
+  account,
+  highLighted = false,
+}: {
+  account: accountType;
+  highLighted: boolean;
+}) => {
   const specifications = [
     { key: "initialCapital" },
     { key: "spreadAdvantage" },
@@ -117,7 +138,7 @@ const Details = ({ account, highLighted = false }: any) => {
     { key: "tradeExecutionLimit" },
     { key: "openPositionCapacity" },
     { key: "stopOutThreshold" },
-    { labelkey: "marginCallActivation" },
+    { key: "marginCallActivation" },
     { key: "swapPolicy" },
     { key: "riskExposure" },
     { key: "assetOptions" },
@@ -134,7 +155,7 @@ const Details = ({ account, highLighted = false }: any) => {
       <div className="p-6">
         <div className="text-center mb-8">
           <h2 className="text-2xl font-bold mb-4">{account.name}</h2>
-          <p className="text-gray-300 text-sm leading-relaxed w-[10]">
+          <p className="text-gray-300 text-sm leading-relaxed w-[210px]">
             {account.description}
           </p>
         </div>
@@ -144,8 +165,8 @@ const Details = ({ account, highLighted = false }: any) => {
               key={specIndex}
               className="flex items-center justify-center flex-wrap"
             >
-              <span className="text-white text-sm font-medium text-center text-wrap ">
-                {account[spec.key]}
+              <span className="text-white text-sm font-medium text-center text-wrap  ">
+                {account[spec.key as keyof accountType]}
               </span>
             </div>
           ))}

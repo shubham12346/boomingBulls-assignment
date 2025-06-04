@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 
 const TradeAILanding = () => {
@@ -22,10 +22,11 @@ const TradeAILanding = () => {
       <div className="sticky top-0 h-screen flex items-center justify-center overflow-hidden">
         <div className="w-full overflow-hidden">
           <motion.div
-            style={{ x: xTitle }}
-            className="whitespace-nowrap text-6xl md:text-8xl font-bold tracking-tight px-4"
+            style={{ x: xTitle, lineHeight: "200px" }}
+            className="whitespace-nowrap text-nowrap overflow-hidden text-[140px]  md:text-8xl font-bold tracking-tight px-4 flex"
           >
-            <span className="text-white">Trade Anytime, </span>
+            {/* <div className="w-[4000px] h-[100px] border-1 border-white"></div> */}
+            <span className="ml-[200px] text-white">Trade Anytime, </span>
             <span
               style={{
                 background:
@@ -47,9 +48,8 @@ const TradeAILanding = () => {
 
           {/* Central div with enhanced pop-in effect - centered with highest z-index */}
           <motion.div
-            initial={{ scale: 2, rotate: -90, opacity: 0 }} // Starts larger, rotated, and faded out
             animate={{ scale: 1, rotate: 0, opacity: 1 }} // Pops in to normal size and orientation
-            whileHover={{ scale: 1.05 }} // Slightly reduced hover scale for larger element
+            whileHover={{ scale: 1.2 }} // Slightly reduced hover scale for larger element
             transition={{
               type: "spring", // Use spring for a more dynamic pop
               stiffness: 120,
@@ -57,10 +57,25 @@ const TradeAILanding = () => {
               delay: 0.2,
             }}
             className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 z-30 cursor-pointer
-                       w-[200px] h-[200px] bg-gray-700 rounded-lg flex items-center justify-center text-white text-2xl font-bold"
+                       w-[200px] h-[200px] bg-gray-800 rounded-2xl flex items-center justify-center text-white text-2xl font-bold
+                        box-shadow-[8px_8px_16px_#bebebe,-8px_-8px_16px_#ffffff] p-3 "
           >
-            <span className="text-white/50">400x400 Div</span>
+            <img
+              decoding="async"
+              loading="lazy"
+              width="1000"
+              height="1000"
+              sizes="226px"
+              srcSet="https://framerusercontent.com/images/wPXXd95jZIk3zRQtU2enBhy2g8.png?scale-down-to=512 512w,https://framerusercontent.com/images/wPXXd95jZIk3zRQtU2enBhy2g8.png 1000w"
+              src="https://framerusercontent.com/images/wPXXd95jZIk3zRQtU2enBhy2g8.png?scale-down-to=512"
+              alt=""
+              className="w-[100%] h-[100%]  object-center  object-cover bg-white text-white rounded-2xl "
+            ></img>
           </motion.div>
+          <div
+            className={`w-[200px] h-[200px] bg-gray-500 blur-2xl absolute left-1/2 top-1/2 
+              transform -translate-x-1/2 -translate-y-1/2 z-10 `}
+          ></div>
         </div>
 
         {/* App store buttons */}

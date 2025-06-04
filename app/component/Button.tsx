@@ -8,7 +8,7 @@ const Button = () => {
       className={`
             
           relative overflow-hidden
-          px-8 py-4 rounded-md
+          px-4 py-2 rounded-2xl
           bg-gradient-to-r from-purple-600 to-purple-700
           hover:from-purple-500 hover:to-purple-600
           active:from-purple-700 active:to-purple-800
@@ -24,10 +24,6 @@ const Button = () => {
       onMouseLeave={() => setIsHovered(false)}
       onMouseDown={() => setIsPressed(true)}
       onMouseUp={() => setIsPressed(false)}
-      onClick={() => {
-        // Add your navigation logic here
-        console.log("Opening free account...");
-      }}
     >
       {/* Gradient overlay for extra shine effect */}
       <div
@@ -42,7 +38,7 @@ const Button = () => {
 
         {/* Arrow icon */}
         <svg
-          className={`w-5 h-5 transition-transform duration-300 ${
+          className={`w-5 h-5 transition-transform duration-300 rotate-[-40deg] ${
             isHovered ? "translate-x-1" : ""
           }`}
           fill="none"
@@ -63,7 +59,7 @@ const Button = () => {
         className={`
           absolute inset-0 rounded-full
           bg-purple-400/20 blur-xl
-          transition-opacity duration-300
+          transition-opacity duration-300 text-[16px]
           ${isHovered ? "opacity-100" : "opacity-0"}
         `}
         style={{ transform: "scale(1.2)" }}

@@ -1,17 +1,33 @@
 "use client";
 
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 
 const PayoutSection = () => {
+  const [counter, setCounter] = useState(999082);
+
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ["start end", "center start"],
+    offset: ["start end", "center center"],
   });
 
-  const blur = useTransform(scrollYProgress, [0, 1], [10, 0]);
+  const blur = useTransform(
+    scrollYProgress,
+    [0, 1],
+    ["blur(10px)", "blur(0px)"]
+  );
   const opacity = useTransform(scrollYProgress, [0, 1], [0.3, 1]);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCounter((prev) => prev + 1);
+    }, 500);
+
+    return () => {
+      clearInterval(timer);
+    };
+  }, []);
 
   return (
     <section
@@ -49,16 +65,16 @@ const PayoutSection = () => {
         transition={{ delay: 0.3, duration: 0.6 }}
         className="text-6xl md:text-[240px] font-extrabold text-transparent bg-clip-text bg-gradient-to-b from-white to-purple-400 relative z-10"
       >
-        $999,682+
+        ${counter}+
       </motion.div>
       {/* Zoomed & Working Background Video */}
-      <div>
+      <div className="flex">
         <video
           autoPlay
           loop
           muted
           playsInline
-          className="absolute inset-0 w-full h-full object-cover scale-[1.5] opacity-50 z-0"
+          className="absolute top-100 inset-0 w-full h-1/2 object-contain scale-[2.8] opacity-50 z-0"
           src="https://framerusercontent.com/assets/xECpz8zWZNwZhoPNVva63Z5xs.mp4"
           height={"200px"}
         />
