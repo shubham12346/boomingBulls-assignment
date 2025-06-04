@@ -8,7 +8,7 @@ const SubHeader = ({
   subTitle = "",
 }) => {
   return (
-    <div className="mt-8 flex flex-col items-center justify-center">
+    <div className=" flex flex-col items-center justify-center">
       <p className="p-1 px-2 border-[1px] rounded-full border-[rgba(255,255,255,0.25)] font-[600] text-[14px]  mb-4 bg-gradient-to-r from-purple-200 to-purple-300 text-transparent bg-clip-text inline-block">
         {bText}
       </p>

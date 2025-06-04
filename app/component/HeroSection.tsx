@@ -1,6 +1,5 @@
 "use client";
 import React, { useState } from "react";
-import MovingBorder from "./MovingBorder";
 import "./moving.css";
 
 const TradingAccountsComparison = () => {
@@ -76,9 +75,9 @@ const TradingAccountsComparison = () => {
   ];
 
   return (
-    <div className=" min-h-[900px]  bg-gray-900 text-white p-8">
+    <div className=" min-h-[900px]   text-white p-8">
       <div className="max-w-7xl mx-auto flex items-center justify-center">
-        <div className="bg-gray-900 text-white h-full w-[250px] p-6 ">
+        <div className=" text-white h-full w-[250px] p-6 ">
           <nav className="space-y-1">
             {menuItems.map((item, index) => (
               <div
